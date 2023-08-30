@@ -1,4 +1,4 @@
-package org.example.tictac;
+package org.example.Tictactoe;
 
 import java.util.Scanner;
 
@@ -8,14 +8,14 @@ public class ttLogic {
     private int turn = 0;
 
     private Scanner in = new Scanner(System.in);
-    public ttLogic(){
+    ttLogic(){
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length ; j++) {
                 board[i][j] = ' ';
             }
         }
     }
-    public void place(int x, int y){
+    private void place(int x, int y){
         // x and y should be in range 0-2
         if (board[y][x]==' '){ // reverse x and y
             board[y][x] = player;
@@ -23,7 +23,7 @@ public class ttLogic {
         }
     }
 
-    public void changePlayer(){
+    private void changePlayer(){
         if (player == 'X'){
             player = 'O';
         }
@@ -31,7 +31,7 @@ public class ttLogic {
             player = 'X';
         }
     }
-    public void printBoard()
+    private void printBoard()
     {
         System.out.println("   0   1   2");
         for (int i = 0; i < board.length; i++) {
@@ -49,7 +49,7 @@ public class ttLogic {
             }
         }
     }
-    public boolean checkWin(){
+    private boolean checkWin(){
         if (turn < 5)return false;
         for (int i = 0; i < board.length; i++) {
             if ((board[i][0]==board[i][1]) && (board[i][1]==board[i][2]) && (board[i][0]!=' ')){
@@ -67,7 +67,7 @@ public class ttLogic {
         }
         return false;
     }
-    public void run(){
+    void run(){
         while (!checkWin() && turn < 9) {
             printBoard();
             System.out.println("Player " + player + " turn");
@@ -80,6 +80,8 @@ public class ttLogic {
 
         printBoard();
         changePlayer();
+        ttGameLoop.addScore(player);
         System.out.println("Player " + player + " wins");
+        System.out.println("--------------------------");
     }
 }

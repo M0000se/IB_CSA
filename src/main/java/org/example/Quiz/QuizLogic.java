@@ -13,7 +13,7 @@ public class QuizLogic {
         questions[2] = new Question("Whats bigger than 1", "any number from 2 to infinity");
         questions[3] = new Question("Is wood edible", "yes");
     }
-    public void inputAndOutput()
+    public void run()
     {
         int score = 0;
         for (int i = 0; i < questions.length; i++) {
