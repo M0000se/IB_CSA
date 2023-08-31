@@ -15,12 +15,14 @@ public class ttLogic {
             }
         }
     }
-    private void place(int x, int y){
+    private boolean placeAndCheckValidity(int x, int y){
         // x and y should be in range 0-2
-        if (board[y][x]==' '){ // reverse x and y
-            board[y][x] = player;
-            turn++;
-        }
+        if(x>2 || x<0)  return false;
+        if(y>2 || y<0)  return false;
+        if (board[y][x]!=' ') return false;
+        board[y][x] = player;
+        turn++;
+        return true;
     }
 
     private void changePlayer(){
@@ -71,10 +73,15 @@ public class ttLogic {
         while (!checkWin() && turn < 9) {
             printBoard();
             System.out.println("Player " + player + " turn");
-            System.out.println("Enter x and y coordinates");
+            System.out.println("Enter x coordinate:");
             int x = Integer.parseInt(in.nextLine());
+            System.out.println("Enter y coordinate:");
             int y = Integer.parseInt(in.nextLine());
-            place(x,y);
+            System.out.println();
+            if(!placeAndCheckValidity(x,y)) {
+                System.out.println("!! Invalid Move !!");
+                continue;
+            }
             changePlayer();
         }
 
