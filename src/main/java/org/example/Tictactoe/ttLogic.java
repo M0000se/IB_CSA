@@ -84,11 +84,18 @@ public class ttLogic {
             }
             changePlayer();
         }
-
-        printBoard();
-        changePlayer();
-        ttGameLoop.addScore(player);
-        System.out.println("Player " + player + " wins");
-        System.out.println("--------------------------");
+        if(!checkWin()) //if no-one won at the end
+        {
+            System.out.println("TIE");
+            System.out.println("--------------------------");
+        }
+        else
+        {
+            printBoard();
+            changePlayer();
+            ttGameLoop.addScore(player);
+            System.out.println("PLAYER " + player + " WINS");
+            System.out.println("--------------------------");
+        }
     }
 }
